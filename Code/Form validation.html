@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<!--
+    Author       : Rishab.H
+    Description  : This Code checks for the valid input format in front-end from the user in an online registration form.
+-->
+
+<html lang="en">
+
+    <head>
+
+        <!-- CSS Code Starts -->
+        <style>
+            
+            *
+            {
+                text-align : center ;
+                background-color : #ecf0f3 ;
+            }
+
+            input
+            {
+                background-color : white ;
+            }
+
+            img
+            {
+                height : 150px ;
+                width : 300px ;
+            }
+
+        </style>
+        
+        <!-- JavaScript Code Starts -->
+        <script>
+            function formValidation()
+            {
+                
+                var uname = document.frm.uname ;
+                var pwd1 = document.frm.pwd1 ;
+                var pwd2 = document.frm.pwd2 ;
+                var mobile = document.frm.mobile ;
+                var nation = document.frm.nation ;
+                var interest = document.frm.interest ;
+
+                if(!(isAlpha(uname.value))) /* isAlpha() is a user-defined function. */
+                {
+                    alert("User Name should contain alphabets.") ;
+                    uname.select() ;
+                    return false ;
+                }
+                
+                /*
+                 *   select() is a built in function that selects the contents present in that element.
+                 */
+
+                else if((pwd1.value) != (pwd2.value))
+                {
+                    alert("Password mismatches, retype the password again.") ;
+                    pwd2.value="" ; /* resetting pwd2 into null */
+                    pwd1.select() ;
+                    return false ;
+                }
+
+                else if(!(isDigit(mobile.value))) /* isDigit() is a user-defined function. */
+                {
+                    alert("Mobile number should contain only numbers.") ;
+                    mobile.select() ;
+                    return false ;
+                }
+
+                else if((mobile.value.length) != 10)
+                {
+                    alert("Mobile number should contain only 10 digits.") ;
+                    mobile.focus() ;
+                    return false ;
+                }
+                
+                /*
+                 *   focus() is a in-built function in JS that places the curser in that location whenever it is executed.
+                 */
+                
+                else if((nation.value) == "")
+                {
+                    alert("Please select your Nation.") ;
+                    nation.focus() ;
+                    return false ;
+                }
+
+                else if (!(isChecked(interest))) /* isChecked() is a user-defined function. */
+                {
+                    alert("Please select atleast one interest.") ;
+                    interest[0].focus() ;
+                    return false ;
+                }
+
+                else /* All inputs are in valid format. */
+                {
+                    alert("Form Submitted successfully.") ;
+                    return true ;
+                }
+
+            }  /* End of formValidation() function. */
+
+            function isAlpha(u_n) /* Checks if all the input are alphabets only. */
+            {
+                var flag = true ;
+                var tmp = u_n.toLowerCase() ;
+                
+                /*
+                 * toLowerCase() is a in-built function that convert the upper case alphabets to its lower case.
+                 */
+                
+                for(i=0;i<tmp.length;i++)
+                {
+                    if(!(((tmp.charAt(i)) >= 'a') && ((tmp.charAt(i)) <= 'z')))
+                    {
+                        flag = false ;
+                        break ;
+                    }
+                }
+                return flag ;
+            } /* End of isAlpha() function. */ 
+
+            function isDigit(mob)  /* Checks if all the inputs are numbers only. */
+            {
+                var flag = true ;
+                for(i=0;i<mob.length;i++)
+                {
+                    if(!(((mob.charAt(i)) >= '0') && ((mob.charAt(i)) <= '9')))
+                    {
+                        flag = false ;
+                        break ;
+                    }
+                }
+                return flag ;
+            } /* End of isDigit() function. */
+
+            function isChecked(check) /* Checks if atleast one interest is selected. */
+            {
+                var flag = false ;
+                for(i=0;i<check.length;i++)
+                {
+                    if(check[i].checked)
+                    {
+                        flag = true ;
+                        break ;
+                    }
+                }
+                return flag ;
+            }  /* End of isChecked() function. */
+
+        </script>
+
+        <noscript>This Browser does not support JavaScript</noscript>
+
+    </head>
+    <body>
+        
+        <img src = "../logo/abc-online-courses-logo.png" alt = "ABC online courses logo">
+        
+        <hr>
+        <h1>ABC Online Courses</h1>
+        <h2>Online Registration Form</h2>
+        <hr>
+
+        <form name = frm onSubmit = "return formValidation()">
+            <p>User Name: <input type = text name = uname required autofocus></p>
+            <p>Password: <input type = password name = pwd1 required><br></p>
+            <p>Re Type Password: <input type = password name = pwd2 required><br></p>
+            <p>Email Address: <input type = email name = email size = 50 required><br></p>
+            <p>Mobile number: <input type = text name = mobile required><br></p>
+            <p>Nation:
+                <select name = nation>
+                    <option value = "" selected>[select your nation]</option>
+                    <script>
+                        var countryList = ["Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
+    "Bahamas (the)","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia (Plurinational State of)","Bonaire, Sint Eustatius and Saba","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory (the)","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
+    "Cabo Verde","Cambodia","Cameroon","Canada","Cayman Islands (the)","Central African Republic (the)","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands (the)","Colombia","Comoros (the)","Congo (the Democratic Republic of the)","Congo (the)","Cook Islands (the)","Costa Rica","Croatia","Cuba","Curaçao","Cyprus","Czechia","Côte d'Ivoire",
+    "Denmark","Djibouti","Dominica","Dominican Republic (the)",
+    "Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia",
+    "Falkland Islands (the) [Malvinas]","Faroe Islands (the)","Fiji","Finland","France","French Guiana","French Polynesia","French Southern Territories (the)",
+    "Gabon","Gambia (the)","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
+    "Haiti","Heard Island and McDonald Islands","Holy See (the)","Honduras","Hong Kong","Hungary",
+    "Iceland","India","Indonesia","Iran (Islamic Republic of)","Iraq","Ireland","Isle of Man","Israel","Italy",
+    "Jamaica","Japan","Jersey","Jordan",
+    "Kazakhstan","Kenya","Kiribati","Korea (the Democratic People's Republic of)","Korea (the Republic of)","Kuwait","Kyrgyzstan",
+    "Lao People's Democratic Republic (the)","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
+    "Macao","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands (the)","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia (Federated States of)","Moldova (the Republic of)","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar",
+    "Namibia","Nauru","Nepal","Netherlands (the)","New Caledonia","New Zealand","Nicaragua","Niger (the)","Nigeria","Niue","Norfolk Island","Northern Mariana Islands (the)","Norway",
+    "Oman",
+    "Pakistan","Palau","Palestine, State of","Panama","Papua New Guinea","Paraguay","Peru","Philippines (the)","Pitcairn","Poland","Portugal","Puerto Rico",
+    "Qatar",
+    "Republic of North Macedonia","Romania","Russian Federation (the)","Rwanda","Réunion",
+    "Saint Barthélemy","Saint Helena, Ascension and Tristan da Cunha","Saint Kitts and Nevis","Saint Lucia","Saint Martin (French part)","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Sint Maarten (Dutch part)","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","South Sudan","Spain","Sri Lanka","Sudan (the)","Suriname","Svalbard and Jan Mayen","Sweden","Switzerland","Syrian Arab Republic",
+    "Taiwan","Tajikistan","Tanzania, United Republic of","Thailand","Timor-Leste","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands (the)","Tuvalu",
+    "Uganda","Ukraine","United Arab Emirates (the)","United Kingdom of Great Britain and Northern Ireland (the)","United States Minor Outlying Islands (the)","United States of America (the)","Uruguay","Uzbekistan",
+    "Vanuatu","Venezuela (Bolivarian Republic of)","Viet Nam","Virgin Islands (British)","Virgin Islands (U.S.)",
+    "Wallis and Futuna","Western Sahara",
+    "Yemen",
+    "Zambia","Zimbabwe",
+    "Åland Islands"] ;
+                        for(i=0;i<countryList.length;i++)
+                        {
+                            document.write("<option value="+countryList[i]+">"+countryList[i]) ;
+                        }
+                    </script>
+                </select>
+            <hr>
+            <h4>Tell us your interests</h4>
+            <script>
+                var inte=["Entertainment","Health & Nutrition","Sports & Games","Travel","Studies"] ;
+                for(i=0;i<inte.length;i++)
+                {
+                    document.write("<input type='checkbox' name='interest'>"+inte[i]) ;
+                }
+            </script>
+            <hr>
+            <input type = submit>
+            <input type = reset>
+        </form>
+        
+    </body>
+</html>
