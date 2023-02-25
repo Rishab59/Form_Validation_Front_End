@@ -9,6 +9,8 @@
 
     <head>
 
+        <link rel = "shortcut icon" type = "image/png" href = "../logo/letter-r.png">
+
         <!-- CSS Code Starts -->
         <style>
             
@@ -33,6 +35,16 @@
         
         <!-- JavaScript Code Starts -->
         <script>
+
+            let docTitle = document.title ;
+            window.addEventListener("blur", () => {
+                document.title = "Thanks For Visiting - Rishab" ;
+            }) ;
+
+            window.addEventListener("focus", () => {
+                document.title = docTitle ;
+            }) ; 
+            
             function formValidation()
             {
                 
